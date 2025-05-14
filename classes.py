@@ -66,17 +66,17 @@ class Wizard:
             raise ValueError
     def set_house(self, new: str):
         if isinstance(new, str):
-            self.__house
+            self.__house = new
         else:
             raise ValueError
     def set_magic_level(self, new: int):
         if isinstance(new, int) and new > 0:
-            self.__magic_level
+            self.__magic_level = new
         else:
             raise ValueError
     def set_spells(self, new: list[Spell]):
         if isinstance(new, list) and all([isinstance(e, Spell) for e in new]):
-            self.__spells
+            self.__spells = new
         else:
             raise ValueError
     def set_status(self, new: str) -> str:
@@ -226,6 +226,12 @@ class Robot:
     def get_status(self):
         return self.__status
     
+    def work(self):
+        self.set_status('В работе')
+    
+    def break_(self):
+        self.set_status('На перерыве')
+
     def __str__(self):
         return f'Серийный номер: {self.__serial_number}, модель: {self.__model}, '\
         f'текущая задача: {self.__current_task}, заряд: {self.__charge_level}, '\
@@ -262,7 +268,7 @@ class Athlete:
         else:
             raise ValueError
     def set_achievements(self, new: list[Achievement]):
-        if isinstance(new, list) and all([isinstance(e, str) for e in new]):
+        if isinstance(new, list) and all([isinstance(e, Achievement) for e in new]):
             self.__achievements = new
         else:
             raise ValueError
@@ -293,7 +299,7 @@ class Athlete:
         
     def __str__(self):
         return f'Имя: {self.__name}, возраст: {self.__age}, '\
-        f'вид стпорта: {self.__sport_type}, кол-во достижений: {len(self.__achievements)}'\
+        f'вид стпорта: {self.__sport_type}, кол-во достижений: {len(self.__achievements)}, '\
         f'статус: {self.__status}'
 
     def __repr__(self):
